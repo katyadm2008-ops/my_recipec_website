@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Рецепты</title>
+		<link rel="stylesheet" href="recipes.css">
+	</head>
+	<body>
+	<header>
+	<a href="recipes_main.html"><img src="logo.png"></a>
+	<nav>
+	<div id = "dropdown" class="dropdown">
+	<span class="line"></span>
+	<span class="line"></span>
+	<span class="line"></span>
+	<div id = "dropdowncontent" class="dropdown-content">
+	<ul>
+	<li><a href="recipes_main.html">Главная</a></li>
+	<li><a href="recipes_text.html">Рецепты</a></li>
+	<li><a href="recipes_form.html">Написать отзыв</a></li>
+	</ul>
+	</div>
+	</div>
+	</nav>
+	</header>
+	<section>
+	<div class="forma">
+	<h1>Попробуй рецепт и напиши отзыв</h1>
+	<form action="https://formspree.io/f/mdajaaya" method="POST">
+	<input type="text" name="name" required> Имя: <p></p>
+	<input type="email" name="email" required> Email: <p></p>
+	<select name="rec" >
+	<option value="tir">Тирамису</option>
+	<option value="kar">Карбонара</option>
+	<option value="laz">Лазанья</option>
+	<option value="ven">Вензели</option>
+	</select> Рецепт на который напишешь отзыв:
+	<p></p>
+	<textarea name="comment" rows="5" cols="40" placeholder="Напишите свой отзыв" required></textarea><p></p>
+	<input type="submit" value="Отправить">
+	<input type="reset" value="Очистить">
+	</form>
+	</div>
+	</section>
+	<footer>
+	<p>@recipes, 2026</p>
+	<a href="https://vk.com/katerina_umb" target="_blank">VK</a>
+	</footer>
+	<script src="recipes.js"></script>
+	</body>
+</html>
