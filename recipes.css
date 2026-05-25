@@ -1,326 +1,473 @@
+/* ==========================================================================
+   1. СБРОС СТИЛЕЙ И ГЛОБАЛЬНЫЕ НАСТРОЙКИ
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
-	background-color:#FFFDF3;
-	
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fcf9f5; 
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.main {
-	display:flex;
-	flex-wrap: wrap;
-	justify-content:space-around;
-	margin:auto;
-}
-
+/* ==========================================================================
+   2. HEADER И БУРГЕР-МЕНЮ
+   ========================================================================== */
 header {
-	display:flex;
-	justify-content:space-between;
-	background-color:#FFFDF3;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header a img {
+    height: 50px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+header a img:hover {
+    transform: scale(1.05);
+}
+.dropdown {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+.dropdown .line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #ff6b6b;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.dropdown-content ul {
+    list-style: none;
+}
+.dropdown-content ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: #4a4a4a;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-content ul li a:hover {
+    background-color: #fff0f0;
+    color: #ff6b6b;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
+/* ==========================================================================
+   3. ГЛАВНАЯ СТРАНИЦА: СЕТКА РЕЦЕПТОВ 
+   ========================================================================== */
+section {
+    flex: 1; 
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+.main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.main a {
+    display: block;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   ОБНОВЛЕННЫЕ ПРЕМИАЛЬНЫЕ ГРАДИЕНТЫ 
+   ========================================================================== */
+.tirmain { 
+    background: linear-gradient(135deg, #a87f5d 0%, #633d1e 100%); 
+} 
+.karmain { 
+    background: linear-gradient(135deg, #ffd269 0%, #ff9e3d 100%); 
+} 
+.lazmain { 
+    background: linear-gradient(135deg, #ff8a8a 0%, #e54b4b 100%); 
+} 
+.venmain { 
+    background: linear-gradient(135deg, #e2c9b1 0%, #aa8c72 100%); 
+} 
+
+/* ==========================================================================
+   УЛУЧШЕННЫЙ ДИЗАЙН КАРТОЧЕК
+   ========================================================================== */
+.tirmain, .karmain, .lazmain, .venmain {
+    height: 220px;
+    border-radius: 25px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.2); 
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.tirmain::before, .karmain::before, .lazmain::before, .venmain::before {
+    display: none !important;
+}
+
+
+.main a:hover .tirmain,
+.main a:hover .karmain,
+.main a:hover .lazmain,
+.main a:hover .venmain {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==========================================================================
+   4. СТРАНИЦА ЧТЕНИЯ РЕЦЕПТОВ 
+   ========================================================================== */
+.recipes-container {
+    max-width: 800px; 
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+section img {
+    max-width: 100%;       
+    max-height: 450px;     
+    height: auto;
+    width: auto;
+    display: block;
+    margin: 25px auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+}
+
+
+.recipes-container h2 {
+    margin-top: 30px;
+    color: #ff6b6b;
+    border-bottom: 2px solid #fff0f0;
+    padding-bottom: 8px;
+}
+
+.recipes-container p {
+    margin-bottom: 15px;
+    color: #4a4a4a;
+}
+
+/* ==========================================================================
+   5. СТРАНИЦА ОТЗЫВОВ 
+   ========================================================================== */
+.form-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-container h2 {
+    color: #2b2b2b;
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.form-subtitle {
+    color: #8c8c8c;
+    font-size: 0.95rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #4a4a4a;
+}
+
+.form-group input[type="text"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f8fafc;
+    transition: all 0.25s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234a4a4a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #ff6b6b;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: #ff6b6b;
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+}
+
+.submit-btn:hover { background-color: #e05353; }
+.submit-btn:active { transform: scale(0.98); }
+
+/* ==========================================================================
+   6.FOOTER
+   ========================================================================== */
 footer {
-	display:flex;
-	justify-content:space-between;
-	background-color:#2C4214;
-	color:white;
-	position: relative; 
-	bottom: 0;
-	padding: 20px 0;
-}
-
-footer p {
-	margin: 20px 40px;
+    background-color: #2b2b2b;
+    color: #aeaeae;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    border-top: 3px solid #ff6b6b;
 }
 
 footer a {
-	text-decoration: none;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	color:white;
-	margin: 20px 40px;
+    color: #ff6b6b;
+    font-weight: bold;
+    transition: color 0.2s ease;
 }
 
-a {
-	text-decoration: none;
+footer a:hover { color: #ffffff; }
+
+/* ==========================================================================
+   7. МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ========================================================================== */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    .main {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px; 
+    }
+
+    .recipes-container {
+        padding: 20px; 
+    }
+
+    footer {
+        flex-direction: column; 
+        gap: 12px;
+        text-align: center;
+    }
 }
 
-header img {
-	width: 100px;
-    height: 70px;
+@media (max-width: 480px) {
+    section {
+        padding: 20px 15px;
+    }
+
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .tirmain, .karmain, .lazmain, .venmain {
+        height: 180px; 
+    }
+
+    .form-container {
+        padding: 25px 20px;
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+}
+/* ==========================================================================
+   9. СТИЛИ ДЛЯ КАЛЬКУЛЯТОРА ПОРЦИЙ
+   ========================================================================== */
+.calculator-box {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f0eadd;
 }
 
-.tirmain {
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:300%;
-	width: 900px;
-    height: 500px;
-	color: white;
-	background-image: url("тирглав2.jpg");
-	background-repeat: no-repeat;
-	background-size: 900px 500px ;
-	background-attachment: scroll;
-	margin:20px;
-	opacity: 0.6;
-}
-.karmain {
-	width: 900px;
-    height: 500px;
-	color: white;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:300%;
-	background-image: url("карбглав2.jpg");
-	background-repeat: no-repeat;
-	background-size: 900px 500px ;
-	background-attachment: scroll;
-	margin:20px;
-	opacity: 0.6;
-}
-.lazmain {
-	width: 900px;
-    height: 500px;
-	color: white;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:300%;
-	background-image: url("лазглав2.jpg");
-	background-repeat: no-repeat;
-	background-size: 900px 500px ;
-	background-attachment: scroll;
-	margin:20px;
-	opacity: 0.6;
-}
-.venmain {
-	width: 900px;
-    height: 500px;
-	color: white;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:300%;
-	background-image: url("венглав2.jpg");
-	background-repeat: no-repeat;
-	background-size: 900px 500px ;
-	background-attachment: scroll;
-	margin:20px;
-	opacity: 0.6;
+
+.calculator-box h3 {
+    font-size: 1.15rem;
+    color: #2b2b2b;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-ul {
-	list-style-type: none; 
-	margin: 20px 0;
-	padding: 0; 
-	width: 200px;
-	background-color: #FFFDF3;
-	text-align:center;
-}
-li a {
-	display: block; 
-	color: #000; 
-	padding: 30px;
-	text-decoration: none;
+
+.calc-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
 }
 
-li a:hover {
-	background-color: #E9ECD9; 
-	color: black;
+
+.calc-form input[type="number"] {
+    flex: 1; 
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f8fafc;
+    outline: none;
+    transition: all 0.25s ease;
 }
 
-.dropdown {
-	position: relative; 
-	display: inline-block;
-}
-.dropdown-content { 
-	display: none; 
-	position: absolute;
-	z-index: 1;
-	right: 0;
 
+.calc-form input[type="number"]:focus {
+    border-color: #ff6b6b;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.12);
 }
 
-/*.dropdown:hover .dropdown-content { 
-	display: block;
-}*/
 
-.line {
-	display:block;
-	height: 4px;
-	width: 50px;
-	background-color: #F3CB47;
-	margin: 15px;
-	display:flex;
-	justify-content:center;
-	align-items:center;
+.calc-btn {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.15);
 }
 
-.forma {
-	display:flex;
-	width: 60%;
-	height: 470px;
-	margin: 200px auto;
-	background-color: #E9ECD9;
-	border-radius:40px;
-	flex-direction:column;
-	justify-content:space-around;
+.calc-btn:hover {
+    background-color: #e05353;
 }
 
-form {
-	padding: 0 50px 50px;	
+.calc-btn:active {
+    transform: scale(0.97); 
 }
 
-.rec {
-	width: 60%;
-	background-color: #E9ECD9;
-	border-radius:30px;
-	margin: auto;
-	padding:30px;
-	text-align: justify;
-	display:grid;
-	grid-template-columns: 60% 40%;
-	grid-template-rows: 20% 20% 20% 20% 20%;
+
+.calc-result h4 {
+    font-size: 1.1rem;
+    color: #4a4a4a;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-top: 15px;
+    border-top: 1.5px dashed #edf2f7; 
 }
 
-h1 {
-	text-align:center;
-	margin: 150px 0 20px 0;
+/* ==========================================================================
+   АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ
+   ========================================================================== */
+@media (max-width: 480px) {
+    .calculator-box {
+        padding: 20px;
+    }
+    
+    
+    .calc-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .calc-btn {
+        width: 100%; 
+    }
 }
-
-input, textarea, select, button {
-	background-color: white;
-	padding: 15px;	
-	border-radius:30px;
-	border: 0;
-}
-
-.rec img {
-	width: 350px;
-	height: 200px;
-	margin: 20px;
-}
-
-.howmuch {
-	width: 40%;
-	background-color: #E9ECD9;
-	border-radius:30px;
-	margin: 30px auto;
-	padding:30px;
-	display:grid;
-	grid-template-columns: 1fr 1fr;
-}
-
-.kol {
-	width: 70%;
-	height: 260px;
-	background-color: #FFFFFF;
-	border-radius:30px;
-	margin: 30px auto;
-	padding: 10px;
-}
-
-section {
-	margin: 80px 0 0 0;
-}
-
-.tirmain:hover {
-	animation-name: tras;
-    animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-}
-
-.karmain:hover {
-	animation-name: tras;
-    animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-}
-
-.lazmain:hover {
-	animation-name: tras;
-    animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-}
-
-.venmain:hover {
-	animation-name: tras;
-    animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-}
-
-h3 {
-	margin: 20px;
-}
-
-.rec p {
-	margin: 80px 0 0 0;
-}
-
-@keyframes tras {
-    to {transform: translate(0, -5px); opacity: 1;}
-}
-
-@media(max-width: 480px) {
-	
-	header, footer {
-		width: 480px;
-	}
-	
-	header img {
-		width: 70px;
-		height: 50px;
-	}
-	
-	.tirmain, .karmain, .lazmain, .venmain {
-		width: 400px;
-		height: 200px;
-		background-size: 400px 200px ;
-		margin: auto;
-	}
-	
-	.rec {
-		width: 80%;
-		display:flex;
-		flex-direction: column;
-		margin: auto;
-	}
-	
-	.rec img {
-		width: 200px;
-		height: 100px;
-		margin: auto;
-	}
-	
-	h3 {
-		font-size:100%;
-		margin: 20px;
-	}
-	
-	.howmuch {
-		width: 60%;
-
-	}
-	
-	.howmuch p {
-		font-size:80%;	
-	}
-	
-	input, button {
-		width: 100px;
-	}
-	
-	.forma {
-		width: 90%;
-		height: 470px;
-		margin: 200px auto;
-		font-size:70%;
-	}
-	.kol {
-		height: 310px;
-}
-}
-
